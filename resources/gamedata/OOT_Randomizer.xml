@@ -1,331 +1,269 @@
 <Data name="The Legend of Zelda: Ocarina of Time Randomizer"
-      icons="the_legend_of_zelda_ocarina_of_time.png"
-      iconSize="42"
+      icons="the_legend_of_zelda_ocarina_of_time.png" iconSize="42"
       author="Spell">
 	<Items>
-		<Category id="item" name="Items">
-			<Item id="deku-sticks">
-				<Upgrade name="Deku Sticks" icon="1"/>
-				<Upgrade name="Deku Sticks (20)" icon="1"/>
-				<Upgrade name="Deku Sticks (30)" icon="1"/>
+		<Category id="items" name="Items">
+			<Item id="deku-sticks" name="Deku Sticks" icon="1"/>
+			<Item id="deku-nuts" name="Deku Nuts" icon="2"/>
+			<Item id="bombs" name="Bombs" icon="3"/>
+			<Item id="fairy-bow" name="Fairy Bow" icon="4"/>
+			<Item id="fire-arrows" name="Fire Arrows" icon="5"/>
+			<Item id="ice-arrows" name="Ice Arrows" icon="6"/>
+			<Item id="light-arrows" name="Light Arrows" icon="7"/>
+			<Item id="slingshot" name="Slingshot" icon="8"/>
+			<Item id="fairy-ocarina" name="Fairy Ocarina" icon="9"/>
+			<Item id="ocarina-of-time" name="Ocarina of Time" icon="10"/>
+			<Item id="bombchus" name="Bombchus" icon="11"/>
+			<Item id="hookshot" name="Hookshot" icon="12"/>
+			<Item id="longshot" name="Longshot" icon="13"/>
+			<Item id="boomerang" name="Boomerang" icon="14"/>
+			<Item id="lens-of-truth" name="Lens of Truth" icon="15"/>
+			<Item id="magic-beans" name="Magic Beans" icon="16"/>
+			<Item id="megaton-hammer" name="Megaton Hammer" icon="17"/>
+			<Item id="dins-fire" name="Din's Fire" icon="18"/>
+			<Item id="farores-wind" name="Farore's Wind" icon="19"/>
+			<Item id="nayrus-love" name="Nayru's Love" icon="20"/>
+			<Item id="bottle" name="Bottle" icon="21" stacking="true" max="4"/>
+			<Item id="red-potion" name="Red Potion" icon="22"/>
+			<Item id="green-potion" name="Green Potion" icon="23"/>
+			<Item id="blue-potion" name="Blue Potion" icon="24"/>
+			<Item id="fairy-in-a-bottle" name="Fairy in a Bottle" icon="25"/>
+			<Item id="fish" name="Fish" icon="26"/>
+			<Item id="lon-lon-milk" name="Lon Lon Milk" icon="27"/>
+			<Item id="rutos-letter" name="Ruto's Letter" icon="28"/>
+			<Item id="blue-fire" name="Blue Fire" icon="29"/>
+			<Item id="bugs" name="Bugs" icon="30"/>
+			<Item id="big-poe" name="Big Poe" icon="31"/>
+			<Item id="lon-lon-milk-half" name="Lon Lon Milk (1/2)" icon="32"/>
+			<Item id="poe" name="Poe" icon="33"/>
+			<Item id="weird-egg" name="Weird Egg" icon="34"/>
+			<Item id="cucco" name="Cucco" icon="35"/>
+			<Item id="zeldas-letter" name="Zelda's Letter" icon="36"/>
+			<Item id="cucco-egg" name="Cucco Egg" icon="37"/>
+			<Item id="special-cucco" name="Special Cucco" icon="38"/>
+			<Item id="cojiro" name="Cojiro" icon="39"/>
+			<Item id="weird-mushroom" name="Weird Mushroom" icon="40"/>
+			<Item id="weird-powder" name="Weird Powder" icon="41"/>
+			<Item id="poachers-saw" name="Poacher's Saw" icon="42"/>
+			<Item id="broken-goron-sword" name="Broken Goron Sword" icon="43"/>
+			<Item id="prescription" name="Prescription" icon="44"/>
+			<Item id="eyeball-frog" name="Eyeball Frog" icon="45"/>
+			<Item id="eyedrops" name="Eyedrops" icon="46"/>
+			<Item id="claim-check" name="Claim Check" icon="47"/>
+			<Item id="keaton-mask" name="Keaton Mask" icon="48"/>
+			<Item id="skull-mask" name="Skull Mask" icon="49"/>
+			<Item id="spooky-mask" name="Spooky Mask" icon="50"/>
+			<Item id="bunny-hood" name="Bunny Hood" icon="51"/>
+			<Item id="goron-mask" name="Goron Mask" icon="52"/>
+			<Item id="zora-mask" name="Zora Mask" icon="53"/>
+			<Item id="gerudo-mask" name="Gerudo Mask" icon="54"/>
+			<Item id="mask-of-truth" name="Mask of Truth" icon="55"/>
+
+			<!-- Progressive items, these should always be used over the raw item above. -->
+			<Item id="progressive-ocarina" progressive="true" name="Fairy Ocarina" icon="9">
+				<Upgrade id="fairy-ocarina"/>
+				<Upgrade id="ocarina-of-time"/>
 			</Item>
-			<Item id="deku-nuts">
-				<Upgrade name="Deku Nuts" icon="2"/>
-				<Upgrade name="Deku Nuts (30)" icon="2"/>
-				<Upgrade name="Deku Nuts (40)" icon="2"/>
+
+			<Item id="progressive-hookshot" progressive="true" name="Hookshot" icon="12">
+				<Upgrade id="hookshot"/>
+				<Upgrade id="longshot"/>
 			</Item>
-			<Item id="bombs">
-				<Upgrade name="Bombs" icon="3"/>
-				<Upgrade name="Big Bomb Bag" icon="3"/>
-				<Upgrade name="Bigger Bomb Bag" icon="3"/>
+
+			<Item id="child-mask-quest" progressive="true" name="Weird Egg" icon="34">
+				<Upgrade id="weird-egg"/>
+				<Upgrade id="cucco"/>
+				<Upgrade id="zeldas-letter"/>
+				<Upgrade id="keaton-mask"/>
+				<Upgrade id="skull-mask"/>
+				<Upgrade id="spooky-mask"/>
+				<Upgrade id="bunny-hood"/>
+				<Upgrade id="mask-of-truth"/>
 			</Item>
-			<Item id="fairy-bow">
-				<Upgrade name="Fairy Bow" icon="4"/>
-				<Upgrade name="Big Quiver" icon="4"/>
-				<Upgrade name="Biggest Quiver" icon="4"/>
-			</Item>
-			<Item id="fire-arrows">
-				<Upgrade name="Fire Arrows" icon="5"/>
-			</Item>
-			<Item id="dins-fire">
-				<Upgrade name="Din's Fire" icon="18"/>
-			</Item>
-			<Item id="slingshot">
-				<Upgrade name="Slingshot" icon="8"/>
-				<Upgrade name="Big Bullet Bag" icon="8"/>
-				<Upgrade name="Biggest Bullet Bag" icon="8"/>
-			</Item>
-			<Item id="ocarina">
-				<Upgrade name="Fairy Ocarina" icon="9"/>
-				<Upgrade name="Ocarina of Time" icon="10"/>
-			</Item>
-			<Item id="bombchus">
-				<Upgrade name="Bombchus" icon="11"/>
-			</Item>
-			<Item id="hookshot">
-				<Upgrade name="Hookshot" icon="12"/>
-				<Upgrade name="Longshot" icon="13"/>
-			</Item>
-			<Item id="ice-arrows">
-				<Upgrade name="Ice Arrows" icon="6"/>
-			</Item>
-			<Item id="farores-wind">
-				<Upgrade name="Farore's Wind" icon="19"/>
-			</Item>
-			<Item id="boomerang">
-				<Upgrade name="Boomerang" icon="14"/>
-			</Item>
-			<Item id="lens-of-truth">
-				<Upgrade name="Lens of Truth" icon="15"/>
-			</Item>
-			<Item id="magic-beans">
-				<Upgrade name="Magic Beans" icon="16"/>
-			</Item>
-			<Item id="megaton-hammer">
-				<Upgrade name="Megaton Hammer" icon="17"/>
-			</Item>
-			<Item id="light-arrows">
-				<Upgrade name="Light Arrows" icon="7"/>
-			</Item>
-			<Item id="nayrus-love">
-				<Upgrade name="Nayru's Love" icon="20"/>
-			</Item>
-			<Item id="bottle" stacking="true" max="4">
-				<Upgrade name="Bottle" icon="21"/>
-			</Item>
-			<Item id="rutos-letter">
-				<Upgrade name="Ruto's Letter" icon="28"/>
-			</Item>
-			<Item id="adult-trading-quest">
-				<Upgrade name="Pocket Egg" icon="37"/>
-				<Upgrade name="Pocket Cucco" icon="38"/>
-				<Upgrade name="Cojiro" icon="39"/>
-				<Upgrade name="Odd Mushroom" icon="40"/>
-				<Upgrade name="Odd Poultice" icon="41"/>
-				<Upgrade name="Poacher's Saw" icon="42"/>
-				<Upgrade name="Broken Goron's Sword" icon="43"/>
-				<Upgrade name="Prescription" icon="44"/>
-				<Upgrade name="Eyeball Frog" icon="45"/>
-				<Upgrade name="World's Finest Eye Drops" icon="46"/>
-				<Upgrade name="Claim Check" icon="47"/>
-			</Item>
-			<Item id="child-trading-quest">
-				<Upgrade name="Weird Egg" icon="34"/>
-				<Upgrade name="Cucco" icon="35"/>
-				<Upgrade name="Zelda's Letter" icon="36"/>
-				<Upgrade name="Keaton Mask" icon="48"/>
-				<Upgrade name="Skull Mask" icon="49"/>
-			</Item>
-			<Item id="scale">
-				<Upgrade name="Silver Scale" icon="72"/>
-				<Upgrade name="Golden Scale" icon="73"/>
-			</Item>
-			<Item id="strength">
-				<Upgrade name="Goron's Bracelet" icon="69"/>
-				<Upgrade name="Silver Gauntlets" icon="70"/>
-				<Upgrade name="Golden Gauntlets" icon="71"/>
+
+			<Item id="adult-trading-quest" progressive="true" name="Cucco Egg" icon="37">
+				<Upgrade id="cucco-egg"/>
+				<Upgrade id="special-cucco"/>
+				<Upgrade id="cojiro"/>
+				<Upgrade id="weird-mushroom"/>
+				<Upgrade id="weird-powder"/>
+				<Upgrade id="poachers-saw"/>
+				<Upgrade id="broken-goron-sword"/>
+				<Upgrade id="prescription"/>
+				<Upgrade id="eyeball-frog"/>
+				<Upgrade id="eyedrops"/>
+				<Upgrade id="claim-check"/>
 			</Item>
 		</Category>
+
 		<Category id="equipment" name="Equipment">
-			<Item id="kokiri-sword">
-				<Upgrade name="Kokiri Sword" icon="56"/>
+			<Item id="kokiri-sword" name="Kokiri Sword" icon="56"/>
+			<Item id="master-sword" name="Master Sword" icon="57"/>
+			<Item id="biggoron-sword" name="Biggoron Sword" icon="58"/>
+			<Item id="goron-knife" name="Goron Knife" icon="58"/>
+			<Item id="broken-goron-knife" name="Broken Goron Knife" icon="59"/>
+			<Item id="deku-shield" name="Deku Shield" icon="60"/>
+			<Item id="hylian-shield" name="Hylian Shield" icon="61"/>
+			<Item id="mirror-shield" name="Mirror Shield" icon="62"/>
+			<Item id="kokiri-tunic" name="Kokiri Tunic" icon="63"/>
+			<Item id="goron-tunic" name="Goron Tunic" icon="64"/>
+			<Item id="zora-tunic" name="Zora Tunic" icon="65"/>
+			<Item id="kokiri-boots" name="Kokiri Boots" icon="66"/>
+			<Item id="iron-boots" name="Iron Boots" icon="67"/>
+			<Item id="hover-boots" name="Hover Boots" icon="68"/>
+			<Item id="gorons-bracelet" name="Goron's Bracelet" icon="69"/>
+			<Item id="silver-gauntlets" name="Silver Gauntlets" icon="70"/>
+			<Item id="golden-gauntlets" name="Golden Gauntlets" icon="71"/>
+			<Item id="silver-scale" name="Silver Scale" icon="72"/>
+			<Item id="golden-scale" name="Golden Scale" icon="73"/>
+			<Item id="adult-wallet" name="Adult Wallet" icon="74"/>
+			<Item id="giant-wallet" name="Giant Wallet" icon="75"/>
+			<Item id="gerudo-membership-card" name="Gerudo Membership Card" icon="76"/>
+			<Item id="magic" name="Magic" icon="100"/>
+			<Item id="double-magic" name="Double Magic" icon="101"/>
+
+			<Item id="progressive-strength" progressive="true" name="Goron's Braclet" icon="69">
+				<Upgrade id="gorons-bracelet"/>
+				<Upgrade id="silver-gauntlets"/>
+				<Upgrade id="golden-gauntlets"/>
 			</Item>
-			<Item id="master-sword">
-				<Upgrade name="Master Sword" icon="57"/>
+
+			<Item id="progressive-scale" progressive="true" name="Silver Scale" icon="72">
+				<Upgrade id="silver-scale"/>
+				<Upgrade id="golden-scale"/>
 			</Item>
-			<Item id="biggoron-sword">
-				<Upgrade name="Biggoron Sword" icon="58"/>
+
+			<Item id="progressive-wallet" progressive="true" name="Adult Wallet" icon="74">
+				<Upgrade id="adult-wallet"/>
+				<Upgrade id="giant-wallet"/>
 			</Item>
-			<Item id="deku-shield">
-				<Upgrade name="Deku Shield" icon="60"/>
-			</Item>
-			<Item id="hylian-shield">
-				<Upgrade name="Hylian Shield" icon="61"/>
-			</Item>
-			<Item id="mirror-shield">
-				<Upgrade name="Mirror Shield" icon="62"/>
-			</Item>
-			<Item id="goron-tunic">
-				<Upgrade name="Goron Tunic" icon="64"/>
-			</Item>
-			<Item id="zora-tunic">
-				<Upgrade name="Zora Tunic" icon="65"/>
-			</Item>
-			<Item id="iron-boots">
-				<Upgrade name="Iron Boots" icon="67"/>
-			</Item>
-			<Item id="hover-boots">
-				<Upgrade name="Hover Boots" icon="68"/>
-			</Item>
-			<Item id="wallet">
-				<Upgrade name="Adult Wallet" icon="74"/>
-				<Upgrade name="Giant Wallet" icon="75"/>
-			</Item>
-			<Item id="gerudo-membership-card">
-				<Upgrade name="Gerudo Membership Card" icon="76"/>
-			</Item>
-		</Category>
-		<Category id="medallions" name="Medallions">
-			<Item id="forest-medallion">
-				<Upgrade name="Forest Medallion" icon="90"/>
-			</Item>
-			<Item id="fire-medallion">
-				<Upgrade name="Fire Medallion" icon="91"/>
-			</Item>
-			<Item id="water-medallion">
-				<Upgrade name="Water Medallion" icon="92"/>
-			</Item>
-			<Item id="spirit-medallion">
-				<Upgrade name="Spirit Medallion" icon="93"/>
-			</Item>
-			<Item id="shadow-medallion">
-				<Upgrade name="Shadow Medallion" icon="94"/>
-			</Item>
-			<Item id="light-medallion">
-				<Upgrade name="Light Medallion" icon="95"/>
+
+			<Item id="progressive-magic" progressive="true" name="Magic" icon="100">
+				<Upgrade id="magic"/>
+				<Upgrade id="double-magic"/>
 			</Item>
 		</Category>
-		<Category id="spiritual-stones" name="Spiritual Stones">
-			<Item id="kokiri-emerald">
-				<Upgrade name="Kokiri Emerald" icon="96"/>
-			</Item>
-			<Item id="gorons-ruby">
-				<Upgrade name="Goron's Ruby" icon="97"/>
-			</Item>
-			<Item id="zoras-sapphire">
-				<Upgrade name="Zora's Sapphire" icon="98"/>
-			</Item>
+
+		<Category id="golden-skulltullas" name="Golden Skulltullas">
+			<Item id="golden-skulltulla" name="Golden Skulltulla" icon="77"
+			      stacking="true" max="100"/>
 		</Category>
-		<Category id="items-extended" name="Items">
-			<Item id="magic">
-				<Upgrade name="Magic" icon="100"/>
-				<Upgrade name="Double Magic" icon="101"/>
-			</Item>
-			<Item id="stone-of-agony">
-				<Upgrade name="Stone of Agony" icon="99"/>
-			</Item>
-			<Item id="golden-skulltulla" stacking="true" max="100">
-				<Upgrade name="Golden Skulltulla" icon="77"/>
-			</Item>
-		</Category>
+
 		<Category id="songs" name="Songs">
-			<Item id="zeldas-lullaby">
-				<Upgrade name="Zelda's Lullaby" icon="78"/>
-			</Item>
-			<Item id="eponas-song">
-				<Upgrade name="Epona's Song" icon="79"/>
-			</Item>
-			<Item id="sarias-song">
-				<Upgrade name="Saria's Song" icon="80"/>
-			</Item>
-			<Item id="suns-song">
-				<Upgrade name="Sun's Song" icon="81"/>
-			</Item>
-			<Item id="song-of-time">
-				<Upgrade name="Song of Time" icon="82"/>
-			</Item>
-			<Item id="song-of-storms">
-				<Upgrade name="Song of Storms" icon="83"/>
-			</Item>
-			<Item id="minuet-of-forest">
-				<Upgrade name="Minuet of Forest" icon="84"/>
-			</Item>
-			<Item id="bolero-of-fire">
-				<Upgrade name="Bolero of Fire" icon="85"/>
-			</Item>
-			<Item id="serenade-of-water">
-				<Upgrade name="Serenade of Water" icon="86"/>
-			</Item>
-			<Item id="requiem-of-spirit">
-				<Upgrade name="Requiem of Spirit" icon="87"/>
-			</Item>
-			<Item id="nocturne-of-shadow">
-				<Upgrade name="Nocturne of Shadow" icon="88"/>
-			</Item>
-			<Item id="prelude-of-light">
-				<Upgrade name="Prelude of Light" icon="89"/>
-			</Item>
+			<Item id="zeldas-lullaby" name="Zelda's Lullaby" icon="78"/>
+			<Item id="eponas-song" name="Epona's Song" icon="79"/>
+			<Item id="sarias-song" name="Saria's Song" icon="80"/>
+			<Item id="suns-song" name="Sun's Song" icon="81"/>
+			<Item id="song-of-time" name="Song of Time" icon="82"/>
+			<Item id="song-of-storms" name="Song of Storms" icon="83"/>
+			<Item id="minuet-of-forest" name="Minuet of Forest" icon="84"/>
+			<Item id="bolero-of-fire" name="Bolero of Fire" icon="85"/>
+			<Item id="serenade-of-water" name="Serenade of Water" icon="86"/>
+			<Item id="requiem-of-spirit" name="Requiem of Spirit" icon="87"/>
+			<Item id="nocturne-of-shadow" name="Nocturne of Shadow" icon="88"/>
+			<Item id="prelude-of-light" name="Prelude of Light" icon="89"/>
+		</Category>
+
+		<Category id="medallions" name="Medallions">
+			<Item id="forest-medallion" name="Forest Medallion" icon="90"/>
+			<Item id="fire-medallion" name="Fire Medallion" icon="91"/>
+			<Item id="water-medallion" name="Water Medallion" icon="92"/>
+			<Item id="spirit-medallion" name="Spirit Medallion" icon="93"/>
+			<Item id="shadow-medallion" name="Shadow Medallion" icon="94"/>
+			<Item id="light-medallion" name="Light Medallion" icon="95"/>
+		</Category>
+
+		<Category id="spiritual-stones" name="Spiritual Stones">
+			<Item id="kokiri-emerald" name="Kokiri Emerald" icon="96"/>
+			<Item id="gorons-ruby" name="Goron's Ruby" icon="97"/>
+			<Item id="zoras-sapphire" name="Zora's Sapphire" icon="98"/>
 		</Category>
 	</Items>
 
-	<Zones>
-		<Zone name="The Forest">
-			<Subzone name="Kokiri Forest">
-				<Check id="midos-house" name="Mido's House (4 Chests)">
-					<Slot category="item"/>
-					<Slot category="item"/>
-					<Slot category="item"/>
-					<Slot category="item"/>
-				</Check>
+	<ItemPools>
+		<Pool id="items">
+		</Pool>
 
-				<Check id="kokiri-sword-chest" name="Kokiri Sword Chest">
-					<Slot category="item"/>
-				</Check>
+		<Pool id="songs">
+		</Pool>
 
-				<Check id="kokiri-sos-grotto" name="Song of Storms Grotto">
-					<Requirement id="song-of-storms"/>
-					<Slot category="item"/>
-				</Check>
-			</Subzone>
-		</Zone>
+		<Pool id="skulltulla-tokens">
+		</Pool>
+	</ItemPools>
 
-		<Zone name="The Desert">
-			<Subzone name="Desert Colossus">
-				<Check id="requiem-of-spirit" name="Requiem of Spirit">
-					<Slots>
-						<Slot category="song"/>
-					</Slots>
-				</Check>
+	<Layouts>
+		<!-- ItemTracker layout is also used for the item picker, though with
+		     the direction in a horizontal arrangement, rather than vertical -->
+		<Layout for="item-tracker" direction="vertical" columns="6">
+			<Icon type="item" id="deku-sticks"/>
+			<Icon type="item" id="deku-nuts"/>
+			<Icon type="item" id="bombs"/>
+			<Icon type="item" id="fairy-bow"/>
+			<Icon type="item" id="fire-arrows"/>
+			<Icon type="item" id="dins-fire"/>
 
-				<Check id="nayrus-love-fountain" name="Nayru's Love Fairy Fountain">
-					<Slot category="item"/>
-					<Requirements type="AND">
-						<Requirement id="zeldas-lullaby"/>
-						<Requirement id="ocarina"/>
+			<Icon type="item" id="slingshot"/>
+			<Icon type="item" id="progressive-ocarina"/>
+			<Icon type="item" id="bombchus"/>
+			<Icon type="item" id="progressive-hookshot"/>
+			<Icon type="item" id="ice-arrows"/>
+			<Icon type="item" id="farores-wind"/>
 
-						<Requirements type="OR">
-							<Requirement id="bombs"/>
-							<Requirement id="bombchus" inLogic="false"/>
-						</Requirements>
-					</Requirements>
-				</Check>
+			<Icon type="item" id="boomerang"/>
+			<Icon type="item" id="lens-of-truth"/>
+			<Icon type="item" id="magic-beans"/>
+			<Icon type="item" id="megaton-hammer"/>
+			<Icon type="item" id="light-arrows"/>
+			<Icon type="item" id="nayrus-love"/>
 
-				<Check id="colossus-arch-poh" name="Arch PoH" visible="true">
-					<Requirements>
-						<Requirement id="magic-beans"/>
-					</Requirements>
-					<Slots>
-						<Slot category="item"/>
-					</Slots>
-				</Check>
+			<Icon type="item" id="bottle"/>
+			<Icon type="item" id="rutos-letter"/>
+			<Icon type="item" id="adult-trading-quest"/>
+			<Icon type="item" id="child-mask-quest"/>
+			<Icon type="item" id="progressive-scale"/>
+			<Icon type="item" id="progressive-strength"/>
 
-				<Check id="colossus-soft-soil-skull" name="Soft Soil Skulltulla">
-					<Requirements>
-						<Requirement id="bottle"/>
-						<Requirement id="requiem-of-spirit"/>
-					</Requirements>
-					<Slots>
-						<Slot category="skulltulla-token"/>
-					</Slots>
-				</Check>
+			<Icon type="item" id="zeldas-lullaby" text="Zelda" textPosition="bottom"/>
+			<Icon type="item" id="eponas-song" text="Epona" textPosition="bottom"/>
+			<Icon type="item" id="sarias-song" text="Saria" textPosition="bottom"/>
+			<Icon type="item" id="suns-song" text="Sun" textPosition="bottom"/>
+			<Icon type="item" id="song-of-time" text="Time" textPosition="bottom"/>
+			<Icon type="item" id="song-of-storms" text="Storms" textPosition="bottom"/>
 
-				<Check id="colossus-tree-skull" name="Tree Skulltulla">
-					<Requirements>
-						<Requirement id="hookshot"/>
-					</Requirements>
-					<Slots>
-						<Slot category="skulltulla-token"/>
-					</Slots>
-				</Check>
+			<Icon type="item" id="minuet-of-forest"/>
+			<Icon type="item" id="bolero-of-fire"/>
+			<Icon type="item" id="serenade-of-water"/>
+			<Icon type="item" id="requiem-of-spirit"/>
+			<Icon type="item" id="nocturne-of-shadow"/>
+			<Icon type="item" id="prelude-of-light"/>
 
-				<Check id="colossus-plateau-skull" name="Plateau Skulltulla">
-					<Requirements>
-						<Requirement id="magic-beans"/>
-					</Requirements>
-					<Slots>
-						<Slot category="skulltulla-token"/>
-					</Slots>
-				</Check>
+			<Icon type="item" id="kokiri-sword"/>
+			<Icon type="item" id="master-sword"/>
+			<Icon type="item" id="biggoron-sword"/>
+			<Icon type="item" id="deku-shield"/>
+			<Icon type="item" id="hylian-shield"/>
+			<Icon type="item" id="mirror-shield"/>
 
-				<Requirements type="OR">
-					<Requirements type="OR">
-						<Requirement id="requiem-of-spirit"/>
-						<Requirements type="AND">
-							<Requirement id="lens-of-truth"/>
-							<Requirements type="OR">
-								<Requirement id="hookshot" level="1"/>
-								<Requirement id="hover-boots"/>
-							</Requirements>
-						</Requirements>
-					</Requirements>
+			<Icon type="item" id="goron-tunic"/>
+			<Icon type="item" id="zora-tunic"/>
+			<Icon type="item" id="iron-boots"/>
+			<Icon type="item" id="hover-boots"/>
+			<Icon type="item" id="progressive-wallet"/>
+			<Icon type="item" id="gerudo-membership-card"/>
 
-					<!-- Bridge is all that's required to access Colossus OOL -->
-					<Requirements type="OR" inLogic="false">
-						<Requirement id="eponas-song"/>
-						<Requirement id="hookshot" level="1"/>
-					</Requirements>
-				</Requirements>
-			</Subzone>
-		</Zone>
-	</Zones>
+			<Icon type="item" id="forest-medallion"/>
+			<Icon type="item" id="fire-medallion"/>
+			<Icon type="item" id="water-medallion"/>
+			<Icon type="item" id="spirit-medallion"/>
+			<Icon type="item" id="shadow-medallion"/>
+			<Icon type="item" id="light-medallion"/>
+
+			<Icon type="item" id="kokiri-emerald"/>
+			<Icon type="item" id="gorons-ruby"/>
+			<Icon type="item" id="zoras-sapphire"/>
+			<Icon type="item" id="progressive-magic"/>
+			<Icon type="item" id="stone-of-agony"/>
+			<Icon type="item" id="golden-skulltulla"/>
+		</Layout>
+	</Layouts>
 </Data>
