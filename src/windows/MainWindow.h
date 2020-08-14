@@ -5,6 +5,7 @@
 #include "IconSet.h"
 #include "models/ItemLayoutModel.h"
 #include "views/ItemTrackerView.h"
+#include "windows/StreamerPopoutWindow.h"
 
 #include <QMainWindow>
 #include <QGridLayout>
@@ -56,9 +57,13 @@ private:
 	Ui::MainWindow* ui;
 	ItemLayoutModel* layoutModel;
 	ItemTrackerView* itemTracker;
+	StreamerPopoutWindow* popoutWindow;
 	QHash<QString, Item> itemDictionary;
 	QHash<QString, int> itemLevels;
+	QHash<QString, QStringList> strings;
 	IconSet iconSet;
+
+	void parseStrings(QXmlStreamReader* xml);
 };
 
 #endif // MAINWINDOW_H

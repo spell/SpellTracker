@@ -13,6 +13,9 @@
 class ItemTrackerView : public QAbstractItemView {
 Q_OBJECT;
 
+signals:
+	void itemTextToggled(const QModelIndex& item);
+
 public:
 	explicit ItemTrackerView(QWidget* parent = nullptr);
 
@@ -25,6 +28,9 @@ public:
 	void reset() override;
 
 	void setIconSet(IconSet iconSet);
+
+protected slots:
+	void mousePressEvent(QMouseEvent* event) override;
 
 protected:
 	void dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles) override;

@@ -6,6 +6,7 @@
 #include "models/ItemLayoutModel.h"
 
 #include <QLabel>
+#include <QMouseEvent>
 #include <iostream>
 #include <Item.h>
 
@@ -32,21 +33,35 @@ ItemTrackerView::dataChanged(const QModelIndex& topLeft, const QModelIndex& bott
 		auto layoutItem = gridLayout->itemAtPosition(topLeft.row(), topLeft.column());
 
 		if (layoutItem != nullptr) {
-            icon = reinterpret_cast<ItemTrackerIcon*>(layoutItem->widget());
+			icon = reinterpret_cast<ItemTrackerIcon*>(layoutItem->widget());
 		} else {
-            icon = new ItemTrackerIcon(this);
+			icon = new ItemTrackerIcon(this);
 		}
 
 		if (icon != nullptr) {
 			if (!status.item.getId().isEmpty()) {
-                icon->setIcon(icons.get(status.item.getIcon(), !status.active));
-                icon->setToolTip(status.item.getName());
-                icon->setText(status.layout.getText());
+				icon->setIcon(icons.get(status.item.getIcon(), !status.active()));
+				icon->setToolTip(status.item.getName());
+				icon->setTextSize(status.layout.getTextSize());
+
+				if (status.text.isEmpty()) {
+					if (status.item.isStacking() && status.level > 0)
+						icon->setText(QString::number(status.level));
+					if (status.layout.hasText()) {
+						icon->setText(status.layout.getText());
+					}
+
+					if (status.level == 0) {
+						icon->setText(QString());
+					}
+				} else {
+					icon->setText(status.text);
+				}
 			}
 
 			if (layoutItem == nullptr) {
 				gridLayout->addWidget(icon, topLeft.row(), topLeft.column(), Qt::AlignHCenter | Qt::AlignVCenter);
-                icon->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+				icon->setAttribute(Qt::WA_TransparentForMouseEvents, true);
 			}
 		}
 	}
@@ -105,4 +120,13 @@ void ItemTrackerView::adjustSizeToContents() {
 	auto computedSize = icons.iconSize() + gridLayout->margin() + gridLayout->spacing();
 	setMinimumSize(computedSize * model()->columnCount(),
 	               computedSize * model()->rowCount());
+}
+
+void ItemTrackerView::mousePressEvent(QMouseEvent* event) {
+	QAbstractItemView::mousePressEvent(event);
+
+	if (event->button() == Qt::MouseButton::RightButton) {
+		auto index = indexAt(event->pos());
+		emit itemTextToggled(index);
+	}
 }

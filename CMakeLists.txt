@@ -29,7 +29,7 @@ set(SOURCE_FILES
         src/views/ItemTrackerView.h
         src/windows/MainWindow.cpp
         src/windows/MainWindow.h
-        src/windows/MainWindow.ui src/widgets/ItemTrackerIcon.cpp src/widgets/ItemTrackerIcon.h)
+        src/windows/MainWindow.ui src/widgets/ItemTrackerIcon.cpp src/widgets/ItemTrackerIcon.h src/windows/StreamerPopoutWindow.cpp src/windows/StreamerPopoutWindow.h)
 
 set(TS_FILES
         lang/SpellTracker_en_US.ts)

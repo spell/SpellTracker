@@ -149,6 +149,11 @@
 			      stacking="true" max="100"/>
 		</Category>
 
+		<Category id="triforce-pieces" name="Triforce Pieces">
+			<Item id="triforce-piece" name="Piece of the Triforce" icon="106"
+			      stacking="true" max="100"/>
+		</Category>
+
 		<Category id="songs" name="Songs">
 			<Item id="zeldas-lullaby" name="Zelda's Lullaby" icon="78"/>
 			<Item id="eponas-song" name="Epona's Song" icon="79"/>
@@ -191,6 +196,20 @@
 		</Pool>
 	</ItemPools>
 
+	<Strings>
+		<StringList id="medallion-locations">
+			<String>Pocket</String>
+			<String>Deku</String>
+			<String>DC</String>
+			<String>Jabu</String>
+			<String>Forest</String>
+			<String>Fire</String>
+			<String>Water</String>
+			<String>Spirit</String>
+			<String>Shadow</String>
+		</StringList>
+	</Strings>
+
 	<Layouts>
 		<!-- ItemTracker layout is also used for the item picker, though with
 		     the direction in a horizontal arrangement, rather than vertical -->
@@ -216,19 +235,19 @@
 			<Icon type="item" id="light-arrows"/>
 			<Icon type="item" id="nayrus-love"/>
 
-			<Icon type="item" id="bottle"/>
+			<Icon type="item" id="bottle" textSize="14"/>
 			<Icon type="item" id="rutos-letter"/>
 			<Icon type="item" id="adult-trading-quest"/>
 			<Icon type="item" id="child-mask-quest"/>
 			<Icon type="item" id="progressive-scale"/>
 			<Icon type="item" id="progressive-strength"/>
 
-			<Icon type="item" id="zeldas-lullaby" text="Zelda" textPosition="bottom"/>
-			<Icon type="item" id="eponas-song" text="Epona" textPosition="bottom"/>
-			<Icon type="item" id="sarias-song" text="Saria" textPosition="bottom"/>
-			<Icon type="item" id="suns-song" text="Sun" textPosition="bottom"/>
-			<Icon type="item" id="song-of-time" text="Time" textPosition="bottom"/>
-			<Icon type="item" id="song-of-storms" text="Storms" textPosition="bottom"/>
+			<Icon type="item" id="zeldas-lullaby" text="Zelda"/>
+			<Icon type="item" id="eponas-song" text="Epona"/>
+			<Icon type="item" id="sarias-song" text="Saria"/>
+			<Icon type="item" id="suns-song" text="Sun"/>
+			<Icon type="item" id="song-of-time" text="Time"/>
+			<Icon type="item" id="song-of-storms" text="Storms"/>
 
 			<Icon type="item" id="minuet-of-forest"/>
 			<Icon type="item" id="bolero-of-fire"/>
@@ -251,19 +270,19 @@
 			<Icon type="item" id="progressive-wallet"/>
 			<Icon type="item" id="gerudo-membership-card"/>
 
-			<Icon type="item" id="forest-medallion"/>
-			<Icon type="item" id="fire-medallion"/>
-			<Icon type="item" id="water-medallion"/>
-			<Icon type="item" id="spirit-medallion"/>
-			<Icon type="item" id="shadow-medallion"/>
-			<Icon type="item" id="light-medallion"/>
+			<Icon type="item" id="forest-medallion" string="medallion-locations"/>
+			<Icon type="item" id="fire-medallion" string="medallion-locations"/>
+			<Icon type="item" id="water-medallion" string="medallion-locations"/>
+			<Icon type="item" id="spirit-medallion" string="medallion-locations"/>
+			<Icon type="item" id="shadow-medallion" string="medallion-locations"/>
+			<Icon type="item" id="light-medallion" string="medallion-locations"/>
 
-			<Icon type="item" id="kokiri-emerald"/>
-			<Icon type="item" id="gorons-ruby"/>
-			<Icon type="item" id="zoras-sapphire"/>
+			<Icon type="item" id="kokiri-emerald" string="medallion-locations"/>
+			<Icon type="item" id="gorons-ruby" string="medallion-locations"/>
+			<Icon type="item" id="zoras-sapphire" string="medallion-locations"/>
 			<Icon type="item" id="progressive-magic"/>
-			<Icon type="item" id="stone-of-agony"/>
-			<Icon type="item" id="golden-skulltulla"/>
+			<Icon type="item" id="triforce-piece" textSize="14" />
+			<Icon type="item" id="golden-skulltulla" textSize="14"/>
 		</Layout>
 	</Layouts>
 </Data>

@@ -11,18 +11,20 @@
 MainWindow::MainWindow(QWidget* parent)
 		: QMainWindow(parent),
 		  ui(new Ui::MainWindow),
-		  layoutModel(new ItemLayoutModel(&itemDictionary, &itemLevels, this)),
-		  itemTracker(new ItemTrackerView(this)) {
+		  layoutModel(new ItemLayoutModel(&itemDictionary, &itemLevels, &strings, this)),
+		  itemTracker(new ItemTrackerView(this)),
+		  popoutWindow(new StreamerPopoutWindow(layoutModel, iconSet, this)) {
 	ui->setupUi(this);
+	centralWidget()->layout()->addWidget(itemTracker);
 	itemTracker->setModel(layoutModel);
-	auto* dockWidget = new QDockWidget(tr("Item Tracker"), this);
-	dockWidget->setWidget(itemTracker);
-	addDockWidget(Qt::RightDockWidgetArea, dockWidget);
+	ui->logicTrackerScrollArea->hide();
 
 	connect(itemTracker, &ItemTrackerView::clicked, this, &MainWindow::itemTracker_clicked);
+	connect(itemTracker, &ItemTrackerView::itemTextToggled, layoutModel, &ItemLayoutModel::itemTextToggled);
 	connect(this, &MainWindow::itemUpgradeLevelChanged, layoutModel, &ItemLayoutModel::upgradeLevelChanged);
-	connect(ui->actionShow_Item_Tracker, &QAction::triggered, dockWidget, &QDockWidget::show);
+	connect(ui->actionShow_Item_Tracker, &QAction::triggered, itemTracker, &QWidget::setVisible);
 	connect(ui->actionShow_Logic_Tracker, &QAction::triggered, ui->logicTrackerScrollArea, &QScrollArea::setVisible);
+	connect(ui->actionShow_Streaming_Popout, &QAction::triggered, popoutWindow, &QWidget::setVisible);
 
 	// Scan game data folder
 	QDir dataDirectory("gamedata");
@@ -104,6 +106,10 @@ void MainWindow::loadDataFile(const QString& path) {
 				parseItems(&xml);
 			}
 
+			if (xml.name() == "Strings") {
+				parseStrings(&xml);
+			}
+
 			if (xml.name() == "Layouts") {
 				parseLayouts(&xml);
 			}
@@ -124,6 +130,7 @@ bool MainWindow::loadIconSet(const QString& filename) {
 
 	// Emit the correct signals here instead!
 	itemTracker->setIconSet(iconSet);
+	popoutWindow->setIcons(iconSet);
 
 	return true;
 }
@@ -209,8 +216,10 @@ void MainWindow::parseLayouts(QXmlStreamReader* xml) {
 
 			while (!xml->atEnd() && xml->readNext()) {
 				if (xml->name() == "Icon" && xml->isStartElement()) {
-				    ItemLayoutObject object(xml->attributes().value("id").toString());
-				    object.setText(xml->attributes().value("text").toString());
+					ItemLayoutObject object(xml->attributes().value("id").toString());
+					object.setText(xml->attributes().value("text").toString());
+					object.setTextSize(xml->attributes().value("textSize").toInt());
+					object.setString(xml->attributes().value("string").toString());
 					layoutModel->addItem(object);
 				}
 			}
@@ -252,4 +261,33 @@ void MainWindow::itemTracker_clicked(const QModelIndex& index) {
 
 void MainWindow::closeEvent(QCloseEvent* event) {
 	QWidget::closeEvent(event);
+}
+
+void MainWindow::parseStrings(QXmlStreamReader* xml) {
+	while (!xml->atEnd() && xml->readNext()) {
+		if (xml->name() == "StringList") {
+			QStringList stringList;
+			QString stringListId = xml->attributes().value("id").toString();
+
+			while (!xml->atEnd() && xml->readNext()) {
+				std::cout << xml->lineNumber() << std::endl;
+
+				if (xml->name() == "String" && !xml->isEndElement()) {
+					stringList.append(xml->readElementText());
+				}
+
+				if (xml->name() == "StringList" && xml->isEndElement()) {
+					break;
+				}
+			}
+
+			if (!stringListId.isEmpty()) {
+				strings.insert(stringListId, stringList);
+			}
+		}
+
+		if (xml->name() == "Strings" && xml->isEndElement()) {
+			return;
+		}
+	}
 }

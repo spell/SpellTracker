@@ -2,91 +2,110 @@
 // Created by jesse on 8/14/20.
 //
 
+#include <QPainter>
+#include <QPainterPath>
 #include "ItemTrackerIcon.h"
 
-ItemTrackerIcon::ItemTrackerIcon(QWidget* parent)
-        : QWidget(parent),
-          layout(new QGridLayout(this)),
-          icon(new QLabel(this)),
-          text(new QLabel(this)),
-          shadowEffect(new QGraphicsDropShadowEffect(this)) {
-    shadowEffect->setBlurRadius(0);
-    shadowEffect->setColor(QColor("#101010"));
-    shadowEffect->setOffset(1,1);
-
-    layout->addWidget(icon, 1, 1);
-    text->setFont(QFont("arial", 10, QFont::Bold));
-    text->setGraphicsEffect(shadowEffect);
-    text->hide();
-    setTextPosition(TextPosition::Bottom);
-    setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+ItemTrackerIcon::ItemTrackerIcon(QWidget* parent) : QWidget(parent) {
+	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 }
 
 void ItemTrackerIcon::setIcon(const QPixmap& pixmap) {
-    if (!pixmap.isNull()) {
-        icon->setPixmap(pixmap);
-        icon->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-        icon->setMinimumSize(pixmap.size());
-        setMinimumSize(pixmap.size());
-        icon->show();
-    } else {
-        setMinimumSize(0,0);
-        icon->clear();
-        icon->hide();
-    }
+	icon = pixmap;
+	setMinimumSize(pixmap.size());
+	update();
 }
 
 void ItemTrackerIcon::setText(const QString& t) {
-    text->setText(t);
-    text->setVisible(!t.isEmpty());
+	text = t;
+	update();
 }
 
 void ItemTrackerIcon::setTextPosition(TextPosition position) {
-    switch (position) {
-        case TextPosition::TopLeft:
-            text->setAlignment(Qt::AlignLeft);
-            layout->addWidget(text, 0, 0, Qt::AlignLeft | Qt::AlignTop);
-            break;
+	textPosition = position;
+	update();
+}
 
-        case TextPosition::Top:
-            text->setAlignment(Qt::AlignCenter);
-            layout->addWidget(text, 0, 1, Qt::AlignHCenter | Qt::AlignTop);
-            break;
+void ItemTrackerIcon::paintEvent(QPaintEvent* event) {
+	QWidget::paintEvent(event);
 
-        case TextPosition::TopRight:
-            text->setAlignment(Qt::AlignRight);
-            layout->addWidget(text, 0, 2, Qt::AlignRight | Qt::AlignTop);
-            break;
+	QPainter painter(this);
+	painter.setRenderHint(QPainter::Antialiasing);
 
-        case TextPosition::Right:
-            text->setAlignment(Qt::AlignRight);
-            layout->addWidget(text, 1, 2, Qt::AlignRight | Qt::AlignVCenter);
-            break;
+	if (!icon.isNull()) {
+		painter.drawPixmap(0, 0, icon);
+	}
 
-        case TextPosition::BottomRight:
-            text->setAlignment(Qt::AlignRight);
-            layout->addWidget(text, 2, 2, Qt::AlignRight | Qt::AlignBottom);
-            break;
+	if (!text.isNull()) {
+		drawTextAtPosition(&painter);
+	}
+}
 
-        case TextPosition::Bottom:
-            text->setAlignment(Qt::AlignCenter);
-            layout->addWidget(text, 2, 1, Qt::AlignHCenter | Qt::AlignBottom);
-            break;
+void ItemTrackerIcon::setTextSize(int size) {
+	textSize = size > 10 ? size : 10;
+	update();
+}
 
-        case TextPosition::BottomLeft:
-            text->setAlignment(Qt::AlignLeft);
-            layout->addWidget(text, 2, 0, Qt::AlignLeft | Qt::AlignBottom);
-            break;
+void ItemTrackerIcon::drawTextAtPosition(QPainter* painter) {
+	QFont font("Impact", textSize);
+	painter->setFont(font);
 
-        case TextPosition::Left:
-            text->setAlignment(Qt::AlignLeft);
-            layout->addWidget(text, 1, 0, Qt::AlignLeft | Qt::AlignVCenter);
-            break;
+	QPen pen;
+	pen.setWidth(2);
+	pen.setColor(Qt::black);
+	painter->setPen(pen);
 
-        case TextPosition::Center:
-        default:
-            text->setAlignment(Qt::AlignCenter);
-            layout->addWidget(text, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
-            break;
-    }
+	QPainterPath path;
+	path.addText(0, 0, font, text);
+	// Position the text vertically and horizontally in the origin of the widget,
+	// and then move it to the middle.
+	path.translate(-path.boundingRect().width()/2, (height() - (height() - textSize)) /2);
+	path.translate(height()/2, width()/2);
+
+	auto halfWidth = width()/2;
+	auto halfTWidth = path.boundingRect().width()/2 + pen.width();
+	auto halfHeight = height()/2;
+	auto halfTHeight = path.boundingRect().height()/2 + pen.width();
+
+	// Now, finally, reposition the text where it wants to go.
+	switch (textPosition) {
+		case TextPosition::TopLeft:
+			path.translate(-halfWidth + halfTWidth, -halfHeight + halfTHeight);
+			break;
+
+		case TextPosition::Top:
+			path.translate(0, -halfHeight + halfTHeight);
+			break;
+
+		case TextPosition::TopRight:
+			path.translate(halfWidth - halfTWidth, -halfHeight + halfTHeight);
+			break;
+
+		case TextPosition::Right:
+			path.translate(halfWidth - halfTWidth, 0);
+			break;
+
+		case TextPosition::BottomRight:
+			path.translate(halfWidth - halfTWidth, halfHeight - halfTHeight);
+			break;
+
+		case TextPosition::Bottom:
+			path.translate(0, halfHeight - halfTHeight);
+			break;
+
+		case TextPosition::BottomLeft:
+			path.translate(-halfWidth + halfTWidth, halfHeight - halfTHeight);
+			break;
+
+		case TextPosition::Left:
+			path.translate(-halfWidth + halfTWidth, 0);
+			break;
+
+		case TextPosition::Center:
+		default:
+			break;
+	}
+
+	painter->drawPath(path);
+	painter->fillPath(path, QBrush(QColor("#ffffff")));
 }

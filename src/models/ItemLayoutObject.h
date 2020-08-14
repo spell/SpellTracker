@@ -9,41 +9,56 @@
 #include "widgets/ItemTrackerIcon.h"
 
 class ItemLayoutObject {
-    QString itemId;
-    QString text;
-    TextPosition textPosition = {TextPosition::Bottom};
-
+	QString itemId;
+	QString stringId;
+	QString text;
+	int textSize; // in points
+	TextPosition textPosition = {TextPosition::Bottom};
 
 public:
-    explicit ItemLayoutObject(QString itemId = QString());
+	explicit ItemLayoutObject(QString itemId = QString());
 
-    void setText(const QString& t) {
-        text = t;
-    }
+	void setItemId(const QString& id);
 
-    void setTextPosition(TextPosition position) {
-        textPosition = position;
-    }
+	void setText(const QString& t);
 
-    [[nodiscard]] bool isNull() const {
-        return itemId.isEmpty();
-    }
+	void setTextSize(int size);
 
-    [[nodiscard]] const QString& getItemId() const {
-        return itemId;
-    }
+	void setTextPosition(TextPosition position);
 
-    [[nodiscard]] bool hasText() const {
-        return !text.isEmpty();
-    }
+	void setString(const QString& stringId);
 
-    [[nodiscard]] const QString& getText() const {
-        return text;
-    }
+	[[nodiscard]] bool isNull() const {
+		return itemId.isEmpty();
+	}
 
-    [[nodiscard]] TextPosition getTextPosition() const {
-        return textPosition;
-    }
+	[[nodiscard]] const QString& getItemId() const {
+		return itemId;
+	}
+
+	[[nodiscard]] bool hasText() const {
+		return !text.isEmpty();
+	}
+
+	[[nodiscard]] const QString& getText() const {
+		return text;
+	}
+
+	[[nodiscard]] TextPosition getTextPosition() const {
+		return textPosition;
+	}
+
+	[[nodiscard]] int getTextSize() const {
+		return textSize;
+	}
+
+	[[nodiscard]] bool hasString() const {
+		return !stringId.isEmpty();
+	}
+
+	[[nodiscard]] const QString& getString() const {
+		return stringId;
+	}
 };
 
 #endif //SPELLTRACKER_ITEMLAYOUTOBJECT_H

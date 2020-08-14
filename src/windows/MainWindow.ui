@@ -29,6 +29,9 @@
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
      <widget class="QScrollArea" name="logicTrackerScrollArea">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
         <horstretch>0</horstretch>
@@ -168,6 +171,9 @@
    <property name="checked">
     <bool>true</bool>
    </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Item Tracker</string>
    </property>
@@ -177,7 +183,10 @@
     <bool>true</bool>
    </property>
    <property name="checked">
-    <bool>true</bool>
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Logic Tracker</string>
