@@ -27,24 +27,26 @@ ItemTrackerView::dataChanged(const QModelIndex& topLeft, const QModelIndex& bott
 
 	if (topLeft == bottomRight) {
 		auto status = model()->data(topLeft, Qt::DisplayRole).value<ItemStatus>();
-		QLabel* label = nullptr;
+
+		ItemTrackerIcon* icon = nullptr;
 		auto layoutItem = gridLayout->itemAtPosition(topLeft.row(), topLeft.column());
 
 		if (layoutItem != nullptr) {
-			label = reinterpret_cast<QLabel*>(layoutItem->widget());
+            icon = reinterpret_cast<ItemTrackerIcon*>(layoutItem->widget());
 		} else {
-			label = new QLabel(status.item.getId(), this);
+            icon = new ItemTrackerIcon(this);
 		}
 
-		if (label != nullptr) {
+		if (icon != nullptr) {
 			if (!status.item.getId().isEmpty()) {
-				label->setPixmap(icons.get(status.item.getIcon(), !status.active));
-				label->setToolTip(status.item.getName());
+                icon->setIcon(icons.get(status.item.getIcon(), !status.active));
+                icon->setToolTip(status.item.getName());
+                icon->setText(status.layout.getText());
 			}
 
 			if (layoutItem == nullptr) {
-				gridLayout->addWidget(label, topLeft.row(), topLeft.column(), Qt::AlignHCenter | Qt::AlignVCenter);
-				label->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+				gridLayout->addWidget(icon, topLeft.row(), topLeft.column(), Qt::AlignHCenter | Qt::AlignVCenter);
+                icon->setAttribute(Qt::WA_TransparentForMouseEvents, true);
 			}
 		}
 	}

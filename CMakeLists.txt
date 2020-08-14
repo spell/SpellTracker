@@ -17,13 +17,19 @@ find_package(Qt5 COMPONENTS Widgets LinguistTools Xml REQUIRED)
 
 set(SOURCE_FILES
         src/main.cpp
+        src/IconSet.cpp
+        src/IconSet.h
         src/Item.cpp
         src/Item.h
         src/models/ItemLayoutModel.cpp
         src/models/ItemLayoutModel.h
+        src/models/ItemLayoutObject.cpp
+        src/models/ItemLayoutObject.h
+        src/views/ItemTrackerView.cpp
+        src/views/ItemTrackerView.h
         src/windows/MainWindow.cpp
         src/windows/MainWindow.h
-        src/windows/MainWindow.ui src/views/ItemTrackerView.cpp src/views/ItemTrackerView.h src/IconSet.cpp src/IconSet.h)
+        src/windows/MainWindow.ui src/widgets/ItemTrackerIcon.cpp src/widgets/ItemTrackerIcon.h)
 
 set(TS_FILES
         lang/SpellTracker_en_US.ts)

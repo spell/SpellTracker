@@ -209,7 +209,9 @@ void MainWindow::parseLayouts(QXmlStreamReader* xml) {
 
 			while (!xml->atEnd() && xml->readNext()) {
 				if (xml->name() == "Icon" && xml->isStartElement()) {
-					layoutModel->addItem(xml->attributes().value("id").toString());
+				    ItemLayoutObject object(xml->attributes().value("id").toString());
+				    object.setText(xml->attributes().value("text").toString());
+					layoutModel->addItem(object);
 				}
 			}
 		}
