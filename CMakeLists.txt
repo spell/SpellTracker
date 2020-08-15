@@ -34,6 +34,10 @@ set(SOURCE_FILES
         src/windows/SettingsDialog.h
         src/windows/SettingsDialog.ui)
 
+set(RESOURCE_FILES
+        resources/gamedata/OOT_Randomizer.xml
+        resources/icons/the_legend_of_zelda_ocarina_of_time.png)
+
 set(TS_FILES
         lang/SpellTracker_en_US.ts)
 
@@ -45,6 +49,15 @@ elseif (WIN32)
     add_executable(SpellTracker WIN32
             ${TS_FILES}
             ${SOURCE_FILES})
+elseif (APPLE)
+    add_executable(SpellTracker MACOSX_BUNDLE
+            ${TS_FILES}
+            ${SOURCE_FILES}
+            ${RESOURCE_FILES})
+    set_target_properties(SpellTracker PROPERTIES
+            MACOSX_BUNDLE TRUE
+            MACOSX_FRAMEWORK_IDENTIFIER nl.lolwtf.SpellTracker
+            RESOURCE "${RESOURCE_FILES}")
 else ()
     add_executable(SpellTracker
             ${TS_FILES}
