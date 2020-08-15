@@ -44,6 +44,7 @@ ItemTrackerView::dataChanged(const QModelIndex& topLeft, const QModelIndex& bott
 				icon->setIcon(iconSet.get(status.item.getIcon(), !status.active()));
 				icon->setToolTip(status.item.getName());
 				icon->setTextSize(status.layout.getTextSize());
+				icon->setText(status.text);
 
 				if (status.text.isEmpty()) {
 					if (status.item.isStacking() && status.level > 0)
@@ -55,8 +56,6 @@ ItemTrackerView::dataChanged(const QModelIndex& topLeft, const QModelIndex& bott
 					if (status.item.isStacking() && status.level == 0) {
 						icon->setText(QString());
 					}
-				} else {
-					icon->setText(status.text);
 				}
 			}
 
