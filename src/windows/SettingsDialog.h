@@ -2,6 +2,7 @@
 #define SETTINGSDIALOG_H
 
 #include <QDialog>
+#include <QSettings>
 
 namespace Ui {
 	class SettingsDialog;
@@ -21,9 +22,14 @@ public:
 
 	~SettingsDialog() override;
 
+	void done(int i) override;
+
+public slots:
+	void reloadSettings();
 
 private:
 	Ui::SettingsDialog* ui;
+	QSettings settings;
 };
 
 #endif // SETTINGSDIALOG_H

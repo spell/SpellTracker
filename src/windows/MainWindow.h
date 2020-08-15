@@ -11,6 +11,7 @@
 #include <QMainWindow>
 #include <QGridLayout>
 #include <QXmlStreamReader>
+#include <QSettings>
 
 #include <optional>
 
@@ -31,6 +32,8 @@ public slots:
 	void loadDataFile(const QString& path);
 
 	bool loadIconSet(const QString& filename);
+
+	void reloadSettings();
 
 signals:
 
@@ -56,6 +59,7 @@ protected slots:
 
 private:
 	Ui::MainWindow* ui;
+	QSettings settings;
 	SettingsDialog* settingsDialog;
 	ItemLayoutModel* layoutModel;
 	ItemTrackerView* itemTracker;

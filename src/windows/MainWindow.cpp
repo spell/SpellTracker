@@ -32,6 +32,8 @@ MainWindow::MainWindow(QWidget* parent)
 	connect(settingsDialog, &SettingsDialog::iconSpacingValueChanged, itemTracker, &ItemTrackerView::setIconSpacing);
 	connect(settingsDialog, &SettingsDialog::iconScaleValueChanged, itemTracker, &ItemTrackerView::setIconScale);
 
+	reloadSettings();
+
 	// Scan game data folder
 	QDir dataDirectory("gamedata");
 	QStringList gameDataFiles = dataDirectory.entryList(QStringList() << "*.xml", QDir::Files);
@@ -73,7 +75,17 @@ MainWindow::~MainWindow() {
 	delete ui;
 }
 
+void MainWindow::reloadSettings() {
+	settingsDialog->reloadSettings();
+	setGeometry(settings.value("mainWindow/geometry", QRect(100, 100,300, 600)).toRect());
+	loadDataFile(settings.value("tracker/datafile", QString()).toString());
+}
+
 void MainWindow::loadDataFile(const QString& path) {
+	if (path.isEmpty()) {
+		return;
+	}
+
 	QFile file(path);
 	if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
 		statusBar()->showMessage(QString{"Couldn't open file: %1"}.arg(file.fileName()));
@@ -128,6 +140,9 @@ void MainWindow::loadDataFile(const QString& path) {
 				                         .arg(xml.errorString()));
 		return;
 	}
+
+	// If we made it here, save the file location:
+	settings.setValue("tracker/datafile", path);
 }
 
 bool MainWindow::loadIconSet(const QString& filename) {
@@ -235,7 +250,6 @@ void MainWindow::parseLayouts(QXmlStreamReader* xml) {
 	}
 }
 
-
 void MainWindow::itemTracker_clicked(const QModelIndex& index) {
 	if (index.data().isValid()) {
 		auto id = index.data().value<ItemStatus>().itemId;
@@ -269,6 +283,7 @@ void MainWindow::itemTracker_clicked(const QModelIndex& index) {
 
 void MainWindow::closeEvent(QCloseEvent* event) {
 	QWidget::closeEvent(event);
+	settings.setValue("mainWindow/geometry", geometry());
 }
 
 void MainWindow::parseStrings(QXmlStreamReader* xml) {

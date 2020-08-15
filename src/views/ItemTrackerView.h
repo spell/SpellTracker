@@ -18,8 +18,6 @@ signals:
 
 	void itemSecondaryClicked(const QModelIndex& index);
 
-	void iconSpacingChanged(int spacing);
-
 public:
 	explicit ItemTrackerView(QWidget* parent = nullptr);
 
