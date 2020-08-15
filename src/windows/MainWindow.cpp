@@ -11,6 +11,7 @@
 MainWindow::MainWindow(QWidget* parent)
 		: QMainWindow(parent),
 		  ui(new Ui::MainWindow),
+		  settingsDialog(new SettingsDialog(this)),
 		  layoutModel(new ItemLayoutModel(&itemDictionary, &itemLevels, &strings, this)),
 		  itemTracker(new ItemTrackerView(this)),
 		  popoutWindow(new StreamerPopoutWindow(layoutModel, iconSet, this)) {
@@ -25,6 +26,11 @@ MainWindow::MainWindow(QWidget* parent)
 	connect(ui->actionShow_Item_Tracker, &QAction::triggered, itemTracker, &QWidget::setVisible);
 	connect(ui->actionShow_Logic_Tracker, &QAction::triggered, ui->logicTrackerScrollArea, &QScrollArea::setVisible);
 	connect(ui->actionShow_Streaming_Popout, &QAction::triggered, popoutWindow, &QWidget::setVisible);
+	connect(ui->actionSettings, &QAction::triggered, settingsDialog, &SettingsDialog::show);
+
+	// Connect settings dialog stuff
+	connect(settingsDialog, &SettingsDialog::iconSpacingValueChanged, itemTracker, &ItemTrackerView::setIconSpacing);
+	connect(settingsDialog, &SettingsDialog::iconScaleValueChanged, itemTracker, &ItemTrackerView::setIconScale);
 
 	// Scan game data folder
 	QDir dataDirectory("gamedata");

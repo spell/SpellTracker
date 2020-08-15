@@ -105,10 +105,6 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew_Tracker"/>
-    <addaction name="actionOpen_Track"/>
-    <addaction name="actionSave_Track"/>
-    <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -130,6 +126,8 @@
      </property>
     </widget>
     <addaction name="menuGame_Data"/>
+    <addaction name="separator"/>
+    <addaction name="actionSettings"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -192,7 +190,29 @@
     <string>Logic Tracker</string>
    </property>
   </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>Settings</string>
+   </property>
+  </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionQuit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>375</x>
+     <y>322</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

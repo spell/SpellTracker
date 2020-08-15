@@ -40,7 +40,7 @@ ItemTrackerView::dataChanged(const QModelIndex& topLeft, const QModelIndex& bott
 
 		if (icon != nullptr) {
 			if (!status.item.getId().isEmpty()) {
-				icon->setIcon(icons.get(status.item.getIcon(), !status.active()));
+				icon->setIcon(iconSet.get(status.item.getIcon(), !status.active()));
 				icon->setToolTip(status.item.getName());
 				icon->setTextSize(status.layout.getTextSize());
 
@@ -112,14 +112,14 @@ void ItemTrackerView::reset() {
 	qDeleteAll(findChildren<QWidget*>("", Qt::FindDirectChildrenOnly));
 }
 
-void ItemTrackerView::setIconSet(IconSet iconSet) {
-	icons = iconSet;
+void ItemTrackerView::setIconSet(IconSet set) {
+	iconSet = set;
 }
 
 void ItemTrackerView::adjustSizeToContents() {
-	auto computedSize = icons.iconSize() + gridLayout->margin() + gridLayout->spacing();
-	setMinimumSize(computedSize * model()->columnCount(),
-	               computedSize * model()->rowCount());
+	auto computedSize = iconSet.iconSize() * scale + gridLayout->margin() + gridLayout->spacing();
+	setMinimumSize(QSize(computedSize * model()->columnCount(),
+					  computedSize * model()->rowCount()));
 }
 
 void ItemTrackerView::mouseReleaseEvent(QMouseEvent* event) {
@@ -133,3 +133,18 @@ void ItemTrackerView::mouseReleaseEvent(QMouseEvent* event) {
 	}
 }
 
+void ItemTrackerView::setIconSpacing(int spacing) {
+	gridLayout->setSpacing(spacing);
+	adjustSizeToContents();
+}
+
+void ItemTrackerView::setIconScale(int s) {
+	scale = static_cast<qreal>(s) / 100;
+	auto icons = findChildren<ItemTrackerIcon*>("", Qt::FindDirectChildrenOnly);
+
+	for (auto* icon: icons) {
+		icon->setScale(scale);
+	}
+
+	adjustSizeToContents();
+}

@@ -6,6 +6,7 @@
 #include "models/ItemLayoutModel.h"
 #include "views/ItemTrackerView.h"
 #include "windows/StreamerPopoutWindow.h"
+#include "windows/SettingsDialog.h"
 
 #include <QMainWindow>
 #include <QGridLayout>
@@ -55,6 +56,7 @@ protected slots:
 
 private:
 	Ui::MainWindow* ui;
+	SettingsDialog* settingsDialog;
 	ItemLayoutModel* layoutModel;
 	ItemTrackerView* itemTracker;
 	StreamerPopoutWindow* popoutWindow;

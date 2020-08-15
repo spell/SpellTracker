@@ -12,7 +12,8 @@ ItemTrackerIcon::ItemTrackerIcon(QWidget* parent) : QWidget(parent) {
 
 void ItemTrackerIcon::setIcon(const QPixmap& pixmap) {
 	icon = pixmap;
-	setMinimumSize(pixmap.size());
+	setMinimumSize(icon.size() * scale);
+	resize(icon.size() * scale);
 	update();
 }
 
@@ -30,10 +31,11 @@ void ItemTrackerIcon::paintEvent(QPaintEvent* event) {
 	QWidget::paintEvent(event);
 
 	QPainter painter(this);
-	painter.setRenderHint(QPainter::Antialiasing);
+	painter.setRenderHint(QPainter::Antialiasing, true);
+	painter.setRenderHint(QPainter::SmoothPixmapTransform, true);
 
 	if (!icon.isNull()) {
-		painter.drawPixmap(0, 0, icon);
+		painter.drawPixmap(QRect(0, 0, width(), height()), icon);
 	}
 
 	if (!text.isNull()) {
@@ -47,7 +49,7 @@ void ItemTrackerIcon::setTextSize(int size) {
 }
 
 void ItemTrackerIcon::drawTextAtPosition(QPainter* painter) {
-	QFont font("Impact", textSize);
+	QFont font("Impact", textSize * scale);
 	painter->setFont(font);
 
 	QPen pen;
@@ -59,13 +61,13 @@ void ItemTrackerIcon::drawTextAtPosition(QPainter* painter) {
 	path.addText(0, 0, font, text);
 	// Position the text vertically and horizontally in the origin of the widget,
 	// and then move it to the middle.
-	path.translate(-path.boundingRect().width()/2, (height() - (height() - textSize)) /2);
-	path.translate(height()/2, width()/2);
+	path.translate(-path.boundingRect().width() / 2, (height() - (height() - textSize)) / 2);
+	path.translate(height() / 2, width() / 2);
 
-	auto halfWidth = width()/2;
-	auto halfTWidth = path.boundingRect().width()/2 + pen.width();
-	auto halfHeight = height()/2;
-	auto halfTHeight = path.boundingRect().height()/2 + pen.width();
+	auto halfWidth = width() / 2;
+	auto halfTWidth = path.boundingRect().width() / 2 + pen.width();
+	auto halfHeight = height() / 2;
+	auto halfTHeight = path.boundingRect().height() / 2 + pen.width();
 
 	// Now, finally, reposition the text where it wants to go.
 	switch (textPosition) {
@@ -108,4 +110,11 @@ void ItemTrackerIcon::drawTextAtPosition(QPainter* painter) {
 
 	painter->drawPath(path);
 	painter->fillPath(path, QBrush(QColor("#ffffff")));
+}
+
+void ItemTrackerIcon::setScale(qreal s) {
+	scale = s;
+	setMinimumSize(icon.size() * scale);
+	resize(icon.size() * scale);
+	update();
 }

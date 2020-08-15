@@ -9,10 +9,6 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# QtCreator supports the following variables for Android, which are identical to qmake Android variables.
-# Check http://doc.qt.io/qt-5/deployment-android.html for more information.
-# They need to be set before the find_package(Qt5 ...) call.
-
 find_package(Qt5 COMPONENTS Widgets LinguistTools Xml REQUIRED)
 
 set(SOURCE_FILES
@@ -21,6 +17,8 @@ set(SOURCE_FILES
         src/IconSet.h
         src/Item.cpp
         src/Item.h
+        src/widgets/ItemTrackerIcon.cpp
+        src/widgets/ItemTrackerIcon.h
         src/models/ItemLayoutModel.cpp
         src/models/ItemLayoutModel.h
         src/models/ItemLayoutObject.cpp
@@ -29,7 +27,12 @@ set(SOURCE_FILES
         src/views/ItemTrackerView.h
         src/windows/MainWindow.cpp
         src/windows/MainWindow.h
-        src/windows/MainWindow.ui src/widgets/ItemTrackerIcon.cpp src/widgets/ItemTrackerIcon.h src/windows/StreamerPopoutWindow.cpp src/windows/StreamerPopoutWindow.h)
+        src/windows/MainWindow.ui
+        src/windows/StreamerPopoutWindow.cpp
+        src/windows/StreamerPopoutWindow.h
+        src/windows/SettingsDialog.cpp
+        src/windows/SettingsDialog.h
+        src/windows/SettingsDialog.ui)
 
 set(TS_FILES
         lang/SpellTracker_en_US.ts)

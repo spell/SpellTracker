@@ -18,6 +18,8 @@ signals:
 
 	void itemSecondaryClicked(const QModelIndex& index);
 
+	void iconSpacingChanged(int spacing);
+
 public:
 	explicit ItemTrackerView(QWidget* parent = nullptr);
 
@@ -30,6 +32,11 @@ public:
 	void reset() override;
 
 	void setIconSet(IconSet iconSet);
+
+public slots:
+	void setIconSpacing(int spacing);
+
+	void setIconScale(int scale);
 
 protected slots:
 	void mouseReleaseEvent(QMouseEvent* event) override;
@@ -53,7 +60,8 @@ protected:
 
 private:
 	QGridLayout* gridLayout;
-	IconSet icons;
+	IconSet iconSet;
+	qreal scale{1};
 };
 
 

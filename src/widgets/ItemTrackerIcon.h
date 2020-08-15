@@ -29,6 +29,7 @@ private:
 	QString text;
 	TextPosition textPosition{TextPosition::Bottom};
 	int textSize{10};
+	qreal scale{1};
 
 protected:
 	void paintEvent(QPaintEvent* event) override;
@@ -36,6 +37,8 @@ protected:
 	void drawTextAtPosition(QPainter* painter);
 
 public:
+	void setScale(qreal scale);
+
 	explicit ItemTrackerIcon(QWidget* parent = nullptr);
 
 	void setIcon(const QPixmap& pixmap);
