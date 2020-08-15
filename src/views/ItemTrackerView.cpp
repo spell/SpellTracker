@@ -36,6 +36,7 @@ ItemTrackerView::dataChanged(const QModelIndex& topLeft, const QModelIndex& bott
 			icon = reinterpret_cast<ItemTrackerIcon*>(layoutItem->widget());
 		} else {
 			icon = new ItemTrackerIcon(this);
+			icon->setScale(scale);
 		}
 
 		if (icon != nullptr) {
@@ -117,9 +118,9 @@ void ItemTrackerView::setIconSet(IconSet set) {
 }
 
 void ItemTrackerView::adjustSizeToContents() {
-	auto computedSize = iconSet.iconSize() * scale + gridLayout->margin() + gridLayout->spacing();
-	setMinimumSize(QSize(computedSize * model()->columnCount(),
-					  computedSize * model()->rowCount()));
+	auto computedSize = iconSet.iconSize() * scale + gridLayout->spacing() * 2;
+	setMinimumSize(QSize(computedSize * model()->columnCount() + gridLayout->margin() * 2,
+	                     computedSize * model()->rowCount() + gridLayout->margin() * 2));
 }
 
 void ItemTrackerView::mouseReleaseEvent(QMouseEvent* event) {

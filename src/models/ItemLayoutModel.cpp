@@ -87,6 +87,7 @@ void ItemLayoutModel::addItem(const ItemLayoutObject& item) {
 void ItemLayoutModel::clear() {
 	emit beginResetModel();
 	itemLayout.clear();
+	itemTexts.clear();
 	emit endResetModel();
 }
 

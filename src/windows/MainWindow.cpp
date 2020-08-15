@@ -143,6 +143,8 @@ bool MainWindow::loadIconSet(const QString& filename) {
 
 void MainWindow::clearTracker() {
 	itemDictionary.clear();
+	itemLevels.clear();
+	strings.clear();
 	layoutModel->clear();
 }
 
@@ -276,8 +278,6 @@ void MainWindow::parseStrings(QXmlStreamReader* xml) {
 			QString stringListId = xml->attributes().value("id").toString();
 
 			while (!xml->atEnd() && xml->readNext()) {
-				std::cout << xml->lineNumber() << std::endl;
-
 				if (xml->name() == "String" && !xml->isEndElement()) {
 					stringList.append(xml->readElementText());
 				}
