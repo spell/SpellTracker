@@ -51,7 +51,7 @@ ItemTrackerView::dataChanged(const QModelIndex& topLeft, const QModelIndex& bott
 						icon->setText(status.layout.getText());
 					}
 
-					if (status.level == 0) {
+					if (status.item.isStacking() && status.level == 0) {
 						icon->setText(QString());
 					}
 				} else {
@@ -122,11 +122,14 @@ void ItemTrackerView::adjustSizeToContents() {
 	               computedSize * model()->rowCount());
 }
 
-void ItemTrackerView::mousePressEvent(QMouseEvent* event) {
-	QAbstractItemView::mousePressEvent(event);
+void ItemTrackerView::mouseReleaseEvent(QMouseEvent* event) {
+	QAbstractItemView::mouseReleaseEvent(event);
+	auto index = indexAt(event->pos());
 
-	if (event->button() == Qt::MouseButton::RightButton) {
-		auto index = indexAt(event->pos());
-		emit itemTextToggled(index);
+	if (event->button() == Qt::MouseButton::LeftButton) {
+		emit itemPrimaryClicked(index);
+	} else if (event->button() == Qt::MouseButton::RightButton) {
+		emit itemSecondaryClicked(index);
 	}
 }
+

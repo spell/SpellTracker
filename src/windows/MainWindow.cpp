@@ -19,8 +19,8 @@ MainWindow::MainWindow(QWidget* parent)
 	itemTracker->setModel(layoutModel);
 	ui->logicTrackerScrollArea->hide();
 
-	connect(itemTracker, &ItemTrackerView::clicked, this, &MainWindow::itemTracker_clicked);
-	connect(itemTracker, &ItemTrackerView::itemTextToggled, layoutModel, &ItemLayoutModel::itemTextToggled);
+	connect(itemTracker, &ItemTrackerView::itemPrimaryClicked, this, &MainWindow::itemTracker_clicked);
+	connect(itemTracker, &ItemTrackerView::itemSecondaryClicked, layoutModel, &ItemLayoutModel::itemTextToggled);
 	connect(this, &MainWindow::itemUpgradeLevelChanged, layoutModel, &ItemLayoutModel::upgradeLevelChanged);
 	connect(ui->actionShow_Item_Tracker, &QAction::triggered, itemTracker, &QWidget::setVisible);
 	connect(ui->actionShow_Logic_Tracker, &QAction::triggered, ui->logicTrackerScrollArea, &QScrollArea::setVisible);
